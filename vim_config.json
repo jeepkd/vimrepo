@@ -88,28 +88,6 @@
             "recipe": {}
         },
         {
-            "depends-on": [
-                {
-                    "name": "cmake",
-                    "recipe": {
-                        "darwin": [
-                            "brew install cmake"
-                        ],
-                        "linux": []
-                    }
-                }
-            ],
-            "name": "YouCompleteMe",
-            "pkg-url": "https://github.com/Valloric/YouCompleteMe.git",
-            "recipe": {
-                "all": [
-                    "cd ~/.vim/bundle/YouCompleteMe/",
-                    "git submodule update --init --recursive",
-                    "./install.py"
-                ]
-            }
-        },
-        {
             "depends-on": [],
             "name": "vim-gitgutter",
             "pkg-url": "https://github.com/airblade/vim-gitgutter.git",
@@ -174,6 +152,56 @@
             "name": "vim-quickrun",
             "pkg-url": "https://github.com/thinca/vim-quickrun.git",
             "recipe": {}
+        },
+        {
+            "depends-on": [
+                {
+                    "name": "brew",
+                    "recipe": {
+                        "all": [],
+                        "darwin": [
+                            "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+                        ]
+                    }
+                },
+                {
+                    "name": "cmake",
+                    "recipe": {
+                        "darwin": [
+                            "brew install cmake"
+                        ],
+                        "linux": [
+                            "sudo apt-get install -y cmake"
+                        ]
+                    }
+                },
+                {
+                    "name": "python-dev",
+                    "recipe": {
+                        "darwin": [],
+                        "linux": [
+                            "sudo apt-get install -y python-dev"
+                        ]
+                    }
+                },
+                {
+                    "name": "build-essential",
+                    "recipe": {
+                        "darwin": [],
+                        "linux": [
+                            "sudo apt-get install -y build-essential"
+                        ]
+                    }
+                }
+            ],
+            "name": "YouCompleteMe",
+            "pkg-url": "https://github.com/Valloric/YouCompleteMe.git",
+            "recipe": {
+                "all": [
+                    "git submodule update --init --recursive",
+                    "./install.sh --clang-completer"
+                ]
+            }
         }
     ]
 }
